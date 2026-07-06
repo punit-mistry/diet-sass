@@ -1,27 +1,11 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 const { body, validationResult } = require('express-validator');
 const WeeklyUpdate = require('../models/WeeklyUpdate');
 const { auth, adminAuth } = require('../middleware/auth');
+const { cloudinary, imageStorage } = require('../config/cloudinary');
 
 const router = express.Router();
-
-// Configure multer for photo uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadPath = process.env.UPLOAD_PATH || '../uploads';
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath, { recursive: true });
-    }
-    cb(null, uploadPath);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, 'progress-photo-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
 
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image/')) {
@@ -32,7 +16,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 const upload = multer({
-  storage,
+  storage: imageStorage,
   fileFilter,
   limits: {
     fileSize: 5 * 1024 * 1024 // 5MB limit
@@ -143,7 +127,7 @@ router.post('/', [
       weight: parseFloat(weight),
       mood,
       notes,
-      photoUrl: req.file ? `/uploads/${req.file.filename}` : null,
+      photoUrl: req.file ? req.file.path : null,
       weekStartDate: weekStart
     });
 
@@ -194,14 +178,12 @@ router.put('/:id', [
     if (mood) update.mood = mood;
     if (notes !== undefined) update.notes = notes;
     if (req.file) {
-      // Delete old photo if exists
+      // Delete old photo from Cloudinary
       if (update.photoUrl) {
-        const oldPhotoPath = path.join(__dirname, '..', '..', update.photoUrl);
-        if (fs.existsSync(oldPhotoPath)) {
-          fs.unlinkSync(oldPhotoPath);
-        }
+        const publicId = update.photoUrl?.split('/').slice(-2).join('/').replace(/\.[^.]+$/, '');
+        try { await cloudinary.uploader.destroy(publicId); } catch {}
       }
-      update.photoUrl = `/uploads/${req.file.filename}`;
+      update.photoUrl = req.file.path;
     }
 
     await update.save();
@@ -272,12 +254,10 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(403).json({ message: 'Access denied' });
     }
 
-    // Delete photo if exists
+    // Delete photo from Cloudinary if exists
     if (update.photoUrl) {
-      const photoPath = path.join(__dirname, '..', '..', update.photoUrl);
-      if (fs.existsSync(photoPath)) {
-        fs.unlinkSync(photoPath);
-      }
+      const publicId = update.photoUrl?.split('/').slice(-2).join('/').replace(/\.[^.]+$/, '');
+      try { await cloudinary.uploader.destroy(publicId); } catch {}
     }
 
     await WeeklyUpdate.findByIdAndDelete(req.params.id);

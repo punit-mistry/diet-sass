@@ -1,27 +1,11 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 const { body, validationResult } = require('express-validator');
 const DietPlan = require('../models/DietPlan');
 const { auth, adminAuth } = require('../middleware/auth');
+const { cloudinary, dietPlanStorage } = require('../config/cloudinary');
 
 const router = express.Router();
-
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadPath = process.env.UPLOAD_PATH || '../uploads';
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath, { recursive: true });
-    }
-    cb(null, uploadPath);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, 'diet-plan-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
 
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'application/pdf') {
@@ -32,7 +16,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 const upload = multer({
-  storage,
+  storage: dietPlanStorage,
   fileFilter,
   limits: {
     fileSize: 10 * 1024 * 1024 // 10MB limit
@@ -135,7 +119,7 @@ router.post('/', [
     const dietPlan = new DietPlan({
       title,
       description,
-      fileUrl: `/uploads/${req.file.filename}`,
+      fileUrl: req.file.path,
       fileName: req.file.originalname,
       fileSize: req.file.size,
       assignedUsers: parsedAssignedUsers,
@@ -235,10 +219,10 @@ router.delete('/:id', auth, adminAuth, async (req, res) => {
       return res.status(404).json({ message: 'Diet plan not found' });
     }
 
-    // Delete the file from filesystem
-    const filePath = path.join(__dirname, '..', '..', dietPlan.fileUrl);
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
+    // Delete the file from Cloudinary
+    const publicId = dietPlan.fileUrl?.split('/').slice(-2).join('/').replace(/\.[^.]+$/, '');
+    if (publicId) {
+      try { await cloudinary.uploader.destroy(publicId, { resource_type: 'raw' }); } catch {}
     }
 
     await DietPlan.findByIdAndDelete(req.params.id);

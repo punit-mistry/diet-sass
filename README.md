@@ -1,4 +1,4 @@
-# Dietience - Diet Management Web Application
+# NutriSuite - Diet Management Web Application
 
 A comprehensive full-stack web application for diet management with client and admin dashboards.
 

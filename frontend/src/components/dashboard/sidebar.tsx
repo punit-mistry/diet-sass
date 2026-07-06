@@ -150,7 +150,7 @@ export function Sidebar({ collapsed: controlledCollapsed, onToggle }: SidebarPro
           <Sparkles className="h-3.5 w-3.5 text-primary-foreground" />
         </div>
         {!collapsed && (
-          <span className="text-sm font-semibold text-sidebar-foreground truncate">Dietience</span>
+          <span className="text-sm font-semibold text-sidebar-foreground truncate">NutriSuite</span>
         )}
       </div>
 

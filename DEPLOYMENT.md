@@ -1,6 +1,6 @@
-# Dietience Deployment Guide
+# NutriSuite Deployment Guide
 
-This guide covers deploying the Dietience web application to production.
+This guide covers deploying the NutriSuite web application to production.
 
 ## Prerequisites
 

@@ -47,7 +47,7 @@ export default function RegisterPage() {
           <div className="size-8 rounded-lg bg-primary flex items-center justify-center">
             <Sparkles className="h-4 w-4 text-primary-foreground" />
           </div>
-          <span className="text-sm font-semibold">Dietience</span>
+          <span className="text-sm font-semibold">NutriSuite</span>
         </Link>
 
         <div className="text-center space-y-1.5">

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-console.log('🍎 Setting up Dietience - Diet Management Web App');
+console.log('🍎 Setting up NutriSuite - Diet Management Web App');
 console.log('================================================\n');
 
 // Create environment files if they don't exist

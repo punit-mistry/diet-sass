@@ -16,7 +16,7 @@
     "health",
     "web-app"
   ],
-  "author": "Dietience Team",
+  "author": "NutriSuite Team",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^10.0.3"

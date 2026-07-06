@@ -1,7 +1,7 @@
 {
   "name": "dietience-backend",
   "version": "1.0.0",
-  "description": "Backend API for Dietience diet management app",
+  "description": "Backend API for NutriSuite diet management app",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

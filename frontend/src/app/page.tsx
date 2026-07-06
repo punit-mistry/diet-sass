@@ -50,8 +50,8 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 }
 
 const testimonials = [
-  { name: "Dr. Priya Sharma", role: "Nutritionist, Mumbai", avatar: "PS", rating: 5, text: "Dietience has completely transformed how I manage my clients. The meal tracking and analytics are game-changing." },
-  { name: "Rahul Verma", role: "Dietitian, Delhi", avatar: "RV", rating: 5, text: "I've tried many platforms, but Dietience is the only one that combines ease of use with powerful features." },
+  { name: "Dr. Priya Sharma", role: "Nutritionist, Mumbai", avatar: "PS", rating: 5, text: "NutriSuite has completely transformed how I manage my clients. The meal tracking and analytics are game-changing." },
+  { name: "Rahul Verma", role: "Dietitian, Delhi", avatar: "RV", rating: 5, text: "I've tried many platforms, but NutriSuite is the only one that combines ease of use with powerful features." },
   { name: "Ananya Patel", role: "Health Coach, Bangalore", avatar: "AP", rating: 5, text: "My clients love the mobile experience. The progress tracking keeps them motivated like never before." },
   { name: "Vikram Singh", role: "Fitness Trainer, Pune", avatar: "VS", rating: 5, text: "The diet plan assignment and client management features save me hours every week. Absolutely essential tool." },
 ];
@@ -75,10 +75,10 @@ const pricingPlans = [
 ];
 
 const faqs = [
-  { q: "How do I get started with Dietience?", a: "Simply create an account, set up your profile, and start adding clients. You can create diet plans right away." },
+  { q: "How do I get started with NutriSuite?", a: "Simply create an account, set up your profile, and start adding clients. You can create diet plans right away." },
   { q: "Can I import my existing clients?", a: "Yes, you can import client data via CSV. Enterprise plans include bulk import capabilities." },
   { q: "Is my data secure?", a: "Absolutely. We use enterprise-grade encryption, JWT authentication, and role-based access control." },
-  { q: "Can clients use it on mobile?", a: "Yes, Dietience is fully responsive and works seamlessly on all devices." },
+  { q: "Can clients use it on mobile?", a: "Yes, NutriSuite is fully responsive and works seamlessly on all devices." },
   { q: "What payment methods do you accept?", a: "We accept all major credit cards, UPI, and net banking." },
 ];
 
@@ -137,7 +137,7 @@ export default function LandingPage() {
             >
               <Sparkles className="h-4 w-4 text-white" />
             </motion.div>
-            <span className="text-sm font-semibold text-gray-900 dark:text-white">Dietience</span>
+            <span className="text-sm font-semibold text-gray-900 dark:text-white">NutriSuite</span>
           </Link>
           <nav className="flex items-center gap-3">
             <Link href="/login" className="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors px-3 py-1.5">Sign In</Link>
@@ -334,7 +334,7 @@ export default function LandingPage() {
               <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">Professionals</span>
             </h2>
             <p className="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-              Hear from health professionals who trust Dietience every day.
+              Hear from health professionals who trust NutriSuite every day.
             </p>
           </motion.div>
           <div className="max-w-2xl mx-auto relative min-h-[220px]">
@@ -488,7 +488,7 @@ export default function LandingPage() {
             <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 bg-clip-text text-transparent">Your Practice?</span>
           </h2>
           <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-lg mx-auto">
-            Join thousands of health professionals who use Dietience to deliver better outcomes.
+            Join thousands of health professionals who use NutriSuite to deliver better outcomes.
           </p>
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="flex items-center justify-center gap-3 flex-wrap">
             <Link href="/register"
@@ -509,14 +509,14 @@ export default function LandingPage() {
               <div className="size-6 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center">
                 <Sparkles className="h-3 w-3 text-white" />
               </div>
-              <span className="text-sm font-semibold text-gray-900 dark:text-white">Dietience</span>
+              <span className="text-sm font-semibold text-gray-900 dark:text-white">NutriSuite</span>
             </Link>
             <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
               <Link href="/login" className="hover:text-gray-900 dark:hover:text-white transition-colors">Sign In</Link>
               <Link href="/register" className="hover:text-gray-900 dark:hover:text-white transition-colors">Register</Link>
             </div>
             <p className="text-xs text-gray-400 dark:text-gray-500">
-              &copy; {new Date().getFullYear()} Dietience. All rights reserved.
+              &copy; {new Date().getFullYear()} NutriSuite. All rights reserved.
             </p>
           </div>
         </div>

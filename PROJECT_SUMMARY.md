@@ -1,8 +1,8 @@
-# 🍎 Dietience - Complete Diet Management Web Application
+# 🍎 NutriSuite - Complete Diet Management Web Application
 
 ## Project Overview
 
-Dietience is a comprehensive full-stack web application designed for diet management and nutrition tracking. It features separate dashboards for clients and nutritionists (admins), enabling personalized diet plan management, progress tracking, and communication.
+NutriSuite is a comprehensive full-stack web application designed for diet management and nutrition tracking. It features separate dashboards for clients and nutritionists (admins), enabling personalized diet plan management, progress tracking, and communication.
 
 ## ✨ Key Features
 

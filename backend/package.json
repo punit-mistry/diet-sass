@@ -1,5 +1,5 @@
 {
-  "name": "dietience-backend",
+  "name": "nutrisuite-backend",
   "version": "1.0.0",
   "description": "Backend API for NutriSuite diet management app",
   "main": "server.js",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.10.0",
+    "cloudinary": "^1.41.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

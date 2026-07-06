@@ -10,10 +10,15 @@
     "build": "cd frontend && npm run build",
     "start": "cd backend && npm start"
   },
-  "keywords": ["diet", "nutrition", "health", "web-app"],
+  "keywords": [
+    "diet",
+    "nutrition",
+    "health",
+    "web-app"
+  ],
   "author": "Dietience Team",
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^10.0.3"
   }
 }
